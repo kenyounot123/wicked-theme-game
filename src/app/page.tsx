@@ -14,11 +14,13 @@ export default function WickedTrivia() {
   const [difficulty, setDifficulty] = useState<string>("medium");
   const [loadGame, setLoadGame] = useState<boolean>(false)
   const [gameData, setGameData] = useState<TriviaData[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
-  const gameStart = loadGame && gameData
+  const gameStart = loadGame && gameData.length > 0
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
     const form = e.currentTarget
     const formData = new FormData(form)
 
@@ -40,11 +42,15 @@ export default function WickedTrivia() {
       }
 
       const questionsAndAnswers = await response.json()
+      const data = JSON.parse(questionsAndAnswers)
+
       setLoadGame(true)
-      setGameData(questionsAndAnswers.trivia)
+      setGameData(data.trivia)
 
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
     }
 
   }
@@ -111,12 +117,12 @@ export default function WickedTrivia() {
                 </select>
               </div>
               <button className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-purple-900 font-semibold rounded-lg transition duration-200">
-                Start Game
+                {loading ? "Loading game..." : "Start Game"}
               </button>
             </form>
           </div>
         ) : (
-          <Game gameData={gameData}/>
+          <Game gameData={gameData} timeLimit={parseInt(timeSliderVal)}/>
         )}
       </div>
     </>
