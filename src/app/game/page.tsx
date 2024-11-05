@@ -1,9 +1,35 @@
-export default function Game() {
+import { useState } from "react"
+
+
+interface GameProps {
+  gameData: TriviaData[]
+}
+interface TriviaData {
+  difficulty: "easy" | "medium" | "hard",
+  question: string
+  answer: string
+}
+
+export default function Game({gameData}: GameProps) {
+  const [score, setScore] = useState<number>(0)
+  const [winConditionSatisfied, setWinConditionSatisfied] = useState<boolean>(true)
+
+  const handleUpdateScore = () => {
+
+  }
+
+  const handleNextQuestion = () => {
+
+  }
+
+  const handleWin = () => {
+
+  }
   return (
     <section>
        <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span className="text-xl font-semibold">Score: 0</span>
+            <span className="text-xl font-semibold">Score: {score}</span>
             <span className="text-xl font-semibold flex items-center">
               {/* <HourglassIcon className="w-6 h-6 mr-2 animate-pulse" /> */}
               30s

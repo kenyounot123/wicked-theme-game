@@ -3,11 +3,17 @@
 "use client";
 import { useState } from "react";
 import Game from "./game/page";
+
+interface TriviaData {
+  difficulty: "easy" | "medium" | "hard",
+  question: string
+  answer: string
+}
 export default function WickedTrivia() {
   const [timeSliderVal, setTimeSliderVal] = useState<string>("30");
   const [difficulty, setDifficulty] = useState<string>("medium");
   const [loadGame, setLoadGame] = useState<boolean>(false)
-  const [gameData, setGameData] = useState()
+  const [gameData, setGameData] = useState<TriviaData[]>([])
 
   const gameStart = loadGame && gameData
 
@@ -35,7 +41,7 @@ export default function WickedTrivia() {
 
       const questionsAndAnswers = await response.json()
       setLoadGame(true)
-      setGameData(questionsAndAnswers)
+      setGameData(questionsAndAnswers.trivia)
 
     } catch (error) {
       console.log(error)
@@ -46,7 +52,7 @@ export default function WickedTrivia() {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-purple-900 p-4">
-        {gameStart ? (
+        {!gameStart ? (
           <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-purple-800 text-purple-100">
             <h1 className="text-4xl font-bold mb-6 text-center text-green-400 flex items-center justify-center">
               {/* <SkullIcon className="w-8 h-8 mr-2" /> */}
@@ -110,7 +116,7 @@ export default function WickedTrivia() {
             </form>
           </div>
         ) : (
-          <Game/>
+          <Game gameData={gameData}/>
         )}
       </div>
     </>
