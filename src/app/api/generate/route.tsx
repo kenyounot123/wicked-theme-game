@@ -37,9 +37,10 @@ Respond only with JSON for each question.
 
 export async function POST(req:NextRequest){
   const { time, difficulty } = await req.json()
-  console.log(time)
-  console.log(difficulty)
-  const openai = new OpenAI()
+
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
 
   const triviaQuestionsAndAnswers = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -55,6 +56,14 @@ export async function POST(req:NextRequest){
     ],
     response_format: { type: "json_object" },
   })
-
-  return NextResponse.json(triviaQuestionsAndAnswers.choices[0].message.content)
+  const content = triviaQuestionsAndAnswers.choices[0]?.message?.content
+  if (content) {
+    const questionsAndAnswers = JSON.parse(content) 
+    return NextResponse.json(questionsAndAnswers.trivia)
+  } else {
+    return NextResponse.json(
+      { error: "Failed to retrieve trivia questions." },
+      { status: 500 }
+    );
+  }
 }

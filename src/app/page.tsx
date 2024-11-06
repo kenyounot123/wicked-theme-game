@@ -42,11 +42,10 @@ export default function WickedTrivia() {
       }
 
       const questionsAndAnswers = await response.json()
-      const data = JSON.parse(questionsAndAnswers)
 
-      console.log(data)
+      console.log(questionsAndAnswers)
       setLoadGame(true)
-      setGameData(data.trivia)
+      setGameData(questionsAndAnswers)
 
     } catch (error) {
       console.log(error)
