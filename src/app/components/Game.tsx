@@ -1,8 +1,7 @@
+"use client"
 import { useEffect, useState } from "react"
-import CountdownTimer from "../components/CountdownTimer"
-import VictoryScreen from "../components/VictoryScreen"
-import DefeatScreen from "../components/DefeatScreen"
-
+import VictoryScreen from "./VictoryScreen"
+import DefeatScreen from "./DefeatScreen"
 
 interface GameProps {
   gameData: TriviaData[],
@@ -14,26 +13,47 @@ interface TriviaData {
   answer: string
 }
 
+// work on win condition logic and how to display to users 
+
 export default function Game({gameData, timeLimit}: GameProps) {
+  const [timeLeft, setTimeLeft] = useState(timeLimit) 
   const [score, setScore] = useState<number>(0)
   const [winConditionSatisfied, setWinConditionSatisfied] = useState<boolean | null>(null)
   const [questionNumber, setQuestionNumber] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>("")
 
   useEffect(() => {
-    checkWinCondition()
-  }, [score, timeLimit])
-  
+    if (timeLeft <= 0) {
+      updateWin(false); 
+      return;
+    }
+
+    const timerId = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timerId); 
+  }, [timeLeft]);
+
   const handleSubmitAnswer = () => {
     if (!userAnswer) return
+    setUserAnswer("")
 
     const correct = checkIfCorrectAnswer(userAnswer, gameData[questionNumber].answer)
     if (correct) {
       updateScore()
-      proceedToNextQuestion()
+      if (nextQuestionExists()) {
+        proceedToNextQuestion()
+      } else {
+        updateWin(true) // When a win has occured we need someway to stop the timer , exit out of the useEffect
+      }
     } else {
       alert("Incorrect answer. Try again!");
     }
+  }
+
+  const nextQuestionExists = () => {
+    return questionNumber + 1 < gameData.length
   }
 
   const updateScore = () => {
@@ -44,12 +64,8 @@ export default function Game({gameData, timeLimit}: GameProps) {
     setQuestionNumber(prevQuestion => prevQuestion + 1)
   }
 
-  const checkWinCondition = () => {
-    if (score < gameData.length && timeLimit === 0) {
-      setWinConditionSatisfied(false)
-    } else {
-      setWinConditionSatisfied(true)
-    }
+  const updateWin = (result:boolean) => {
+    setWinConditionSatisfied(result)
   }
 
   const checkIfCorrectAnswer = (userAnswer:string, actualAnswer:TriviaData["answer"]) => {
@@ -62,14 +78,13 @@ export default function Game({gameData, timeLimit}: GameProps) {
   }
   return (
     <section>
-      {questionNumber < gameData.length && (
+      {winConditionSatisfied === null && (
         <>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <span className="text-xl font-semibold">Score: {score}</span>
               <span className="text-xl font-semibold flex items-center">
-                {/* <HourglassIcon className="w-6 h-6 mr-2 animate-pulse" /> */}
-                <CountdownTimer timeInSeconds={timeLimit}/>
+                Time Left: {timeLeft}
               </span>
             </div>
             <div className="bg-purple-700 p-4 rounded-lg">
@@ -95,9 +110,8 @@ export default function Game({gameData, timeLimit}: GameProps) {
           </div>
         </>
       )}
-      {winConditionSatisfied && <VictoryScreen/>}
-      
-      {winConditionSatisfied !== null && winConditionSatisfied === false && <VictoryScreen/>}
+      {winConditionSatisfied === true && <VictoryScreen score={score} totalQuestions={gameData.length}/>}
+      {winConditionSatisfied === false && <DefeatScreen score={score} totalQuestions={gameData.length}/>}
     </section> 
   )
 }

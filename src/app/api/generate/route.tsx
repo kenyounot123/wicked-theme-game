@@ -50,7 +50,7 @@ export async function POST(req:NextRequest){
       },
       {
         role: "user",
-        content: `Generate me trivia questions, all of difficulty level: ${difficulty}, that can be answered within ${time} seconds. Please ensure that every question has the same difficulty level. Format the output as an array of JSON objects.`
+        content: `Generate me random trivia questions, all of difficulty level: ${difficulty}, that can be answered within ${time} seconds. Please ensure that every question has the same difficulty level and that less seconds means fewer questions. Format the output as an array of JSON objects.`
       }
     ],
     response_format: { type: "json_object" },

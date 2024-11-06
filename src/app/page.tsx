@@ -2,7 +2,7 @@
 // focus on making cool UI feedback mechanisms and overall engagement
 "use client";
 import { useState } from "react";
-import Game from "./game/page";
+import Game from "./components/Game";
 
 interface TriviaData {
   difficulty: "easy" | "medium" | "hard",
@@ -44,6 +44,7 @@ export default function WickedTrivia() {
       const questionsAndAnswers = await response.json()
       const data = JSON.parse(questionsAndAnswers)
 
+      console.log(data)
       setLoadGame(true)
       setGameData(data.trivia)
 
