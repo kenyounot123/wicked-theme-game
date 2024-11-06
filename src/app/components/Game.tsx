@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import VictoryScreen from "./VictoryScreen"
 import DefeatScreen from "./DefeatScreen"
+import AnswerReveal from "./AnswerReveal"
 
 interface GameProps {
   gameData: TriviaData[],
@@ -13,8 +14,6 @@ interface TriviaData {
   answer: string
 }
 
-// work on win condition logic and how to display to users 
-
 export default function Game({gameData, timeLimit}: GameProps) {
   const [timeLeft, setTimeLeft] = useState(timeLimit) 
   const [score, setScore] = useState<number>(0)
@@ -23,6 +22,9 @@ export default function Game({gameData, timeLimit}: GameProps) {
   const [userAnswer, setUserAnswer] = useState<string>("")
 
   useEffect(() => {
+    if (winConditionSatisfied) {
+      return; 
+    }
     if (timeLeft <= 0) {
       updateWin(false); 
       return;
@@ -33,7 +35,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
     }, 1000);
 
     return () => clearInterval(timerId); 
-  }, [timeLeft]);
+  }, [timeLeft, winConditionSatisfied]);
 
   const handleSubmitAnswer = () => {
     if (!userAnswer) return
@@ -87,7 +89,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
                 Time Left: {timeLeft}
               </span>
             </div>
-            <div className="bg-purple-700 p-4 rounded-lg">
+            <div className="min-w-96 bg-purple-700 p-4 rounded-lg">
               {gameData.map((triviaQuestion, index) => (
                 <h2 key={index} className={`text-lg font-medium mb-2 ${questionNumber === index ? '' : 'hidden'}`}>{triviaQuestion.question}</h2>
               ))}
@@ -112,6 +114,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
       )}
       {winConditionSatisfied === true && <VictoryScreen score={score} totalQuestions={gameData.length}/>}
       {winConditionSatisfied === false && <DefeatScreen score={score} totalQuestions={gameData.length}/>}
+      {winConditionSatisfied !== null && <AnswerReveal gameData={gameData}/>}
     </section> 
   )
 }
