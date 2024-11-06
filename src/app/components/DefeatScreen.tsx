@@ -1,7 +1,7 @@
 export default function DefeatScreen({ score, totalQuestions }: { score: number; totalQuestions: number }) {
   return (
     <div className="space-y-6">
-      <div className="bg-purple-700 p-6 rounded-lg text-center shadow-lg">
+      <div className="min-w-96 bg-purple-700 p-6 rounded-lg text-center shadow-lg mt-10">
         <h2 className="text-3xl font-bold mb-4 text-green-400">You Lose!</h2>
         <p className="text-xl mb-6">Try again next time!</p>
         <div className="bg-purple-800 p-4 rounded-lg inline-block">

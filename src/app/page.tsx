@@ -57,7 +57,7 @@ export default function WickedTrivia() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-purple-900 p-4">
+      <div className="min-w-96 min-h-screen flex items-center justify-center bg-purple-900 p-4">
         {!gameStart ? (
           <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-purple-800 text-purple-100">
             <h1 className="text-4xl font-bold mb-6 text-center text-green-400 flex items-center justify-center">
@@ -79,6 +79,7 @@ export default function WickedTrivia() {
                   max="60"
                   step="5"
                   value={timeSliderVal}
+                  disabled={loading}
                   name="timer"
                   onChange={(e) => setTimeSliderVal(e.target.value)}
                   className="w-full h-2 bg-white rounded-lg appearance-none cursor-pointer
@@ -107,6 +108,7 @@ export default function WickedTrivia() {
                 <select
                   id="difficulty-select"
                   value={difficulty}
+                  disabled={loading}
                   name="difficulty"
                   onChange={(e) => setDifficulty(e.target.value)}
                   className="w-full px-3 py-2 text-purple-900 bg-purple-200 border border-purple-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
@@ -116,7 +118,7 @@ export default function WickedTrivia() {
                   <option value="hard">Hard</option>
                 </select>
               </div>
-              <button className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-purple-900 font-semibold rounded-lg transition duration-200">
+              <button disabled={loading} className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-purple-900 font-semibold rounded-lg transition duration-200">
                 {loading ? "Loading game..." : "Start Game"}
               </button>
             </form>
