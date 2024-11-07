@@ -12,14 +12,19 @@ interface TriviaData {
   difficulty: "easy" | "medium" | "hard",
   question: string
   answer: string
+  topic: string
 }
-
 export default function Game({gameData, timeLimit}: GameProps) {
   const [timeLeft, setTimeLeft] = useState(timeLimit) 
   const [score, setScore] = useState<number>(0)
   const [winConditionSatisfied, setWinConditionSatisfied] = useState<boolean | null>(null)
   const [questionNumber, setQuestionNumber] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>("")
+
+  useEffect(() => {
+    setTimeLeft(30); // Reset to initial timer value when question changes
+  }, [questionNumber]);
+
 
   useEffect(() => {
     if (winConditionSatisfied) {
@@ -35,7 +40,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
     }, 1000);
 
     return () => clearInterval(timerId); 
-  }, [timeLeft, winConditionSatisfied]);
+  }, [timeLeft, winConditionSatisfied, questionNumber]);
 
   const handleSubmitAnswer = () => {
     if (!userAnswer) return
