@@ -1,5 +1,4 @@
-// Completely client sided game with api route for question generation
-// focus on making cool UI feedback mechanisms and overall engagement
+// Make max timer to 2 minutes and refactor logic so that game doesnt end when timer is finished, it just goes to next question.
 "use client";
 import { useState } from "react";
 import Game from "./components/Game";
@@ -12,8 +11,41 @@ interface TriviaData {
   topic: string
 }
 
+
+// const triviaData: TriviaData[] = [
+//   {
+//     difficulty: "easy",
+//     question: "What is the capital of France?",
+//     answer: "Paris",
+//     topic: "Geography"
+//   },
+//   {
+//     difficulty: "medium",
+//     question: "Who painted the Mona Lisa?",
+//     answer: "Leonardo da Vinci",
+//     topic: "Art"
+//   },
+//   {
+//     difficulty: "hard",
+//     question: "What is the chemical symbol for the element with atomic number 76?",
+//     answer: "Os",
+//     topic: "Chemistry"
+//   },
+//   {
+//     difficulty: "easy",
+//     question: "What planet is known as the Red Planet?",
+//     answer: "Mars",
+//     topic: "Astronomy"
+//   },
+//   {
+//     difficulty: "medium",
+//     question: "In what year did the Titanic sink?",
+//     answer: "1912",
+//     topic: "History"
+//   }
+// ];
 export default function WickedTrivia() {
-  const [timeSliderVal, setTimeSliderVal] = useState<string>("30");
+  const [timeSliderVal, setTimeSliderVal] = useState<string>("60");
   const [difficulty, setDifficulty] = useState<string>("medium");
   const [topic, setTopic] = useState<string>("")
   const [questionAmount, setQuestionAmount] = useState<string>("")
@@ -86,7 +118,7 @@ export default function WickedTrivia() {
                   type="range"
                   id="timer"
                   min="10"
-                  max="60"
+                  max="120"
                   step="5"
                   value={timeSliderVal}
                   disabled={loading}

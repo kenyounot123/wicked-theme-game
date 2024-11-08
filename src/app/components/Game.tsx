@@ -31,7 +31,11 @@ export default function Game({gameData, timeLimit}: GameProps) {
       return; 
     }
     if (timeLeft <= 0) {
-      updateWin(false); 
+      if (nextQuestionExists()) {
+        proceedToNextQuestion();
+      } else {
+        updateWin(false);
+      }
       return;
     }
 
@@ -89,9 +93,9 @@ export default function Game({gameData, timeLimit}: GameProps) {
         <>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xl font-semibold">Score: {score}</span>
-              <span className="text-xl font-semibold flex items-center">
-                Time Left: {timeLeft}
+              <div className="text-xl font-semibold">Score: <span className="text-3xl font-bold">{score}</span></div>
+              <span className="text-xl font-semibold flex items-center gap-2">
+                Time Left: <span className="text-3xl font-bold">{timeLeft}</span>
               </span>
             </div>
             <div className="min-w-96 bg-purple-700 p-4 rounded-lg">
