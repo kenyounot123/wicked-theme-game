@@ -1,4 +1,3 @@
-// Make max timer to 2 minutes and refactor logic so that game doesnt end when timer is finished, it just goes to next question.
 "use client";
 import { useState } from "react";
 import Game from "./components/Game";
@@ -57,7 +56,6 @@ export default function WickedTrivia() {
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
     const form = e.currentTarget
     const formData = new FormData(form)
 
@@ -70,6 +68,7 @@ export default function WickedTrivia() {
       alert('All fields are required!');
       return;
     }
+    setLoading(true)
 
     const gameSettings = { time, difficulty, topic, questionAmount }
     try {
@@ -108,7 +107,7 @@ export default function WickedTrivia() {
             </h1>
 
             {/* Game setup section */}
-            <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <label htmlFor="timer" className="font-bold text-sm">
                   Timer Duration: <span className="text-2xl">{timeSliderVal}</span>{" "}

@@ -22,7 +22,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
   const [userAnswer, setUserAnswer] = useState<string>("")
 
   useEffect(() => {
-    setTimeLeft(30); // Reset to initial timer value when question changes
+    setTimeLeft(timeLimit); // Reset to initial timer value when question changes
   }, [questionNumber]);
 
 
@@ -44,7 +44,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
     }, 1000);
 
     return () => clearInterval(timerId); 
-  }, [timeLeft, winConditionSatisfied, questionNumber]);
+  }, [timeLeft, winConditionSatisfied]);
 
   const handleSubmitAnswer = () => {
     if (!userAnswer) return
@@ -88,10 +88,10 @@ export default function Game({gameData, timeLimit}: GameProps) {
     return normalizedAnswer
   }
   return (
-    <section>
+    <section className="p-4">
       {winConditionSatisfied === null && (
-        <>
-          <div className="space-y-4">
+        <div>
+          <div className="space-y-4 mx-auto">
             <div className="flex justify-between items-center">
               <div className="text-xl font-semibold">Score: <span className="text-3xl font-bold">{score}</span></div>
               <span className="text-xl font-semibold flex items-center gap-2">
@@ -119,7 +119,7 @@ export default function Game({gameData, timeLimit}: GameProps) {
               Submit Answer
             </button>
           </div>
-        </>
+        </div>
       )}
       {winConditionSatisfied === true && <VictoryScreen score={score} totalQuestions={gameData.length}/>}
       {winConditionSatisfied === false && <DefeatScreen score={score} totalQuestions={gameData.length}/>}
