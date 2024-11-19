@@ -100,6 +100,14 @@ export default function Game({ gameData, timeLimit }: GameProps) {
     setPaused((prev) => !prev);
   };
 
+  const handleSkipQuestion = () => {
+    if (nextQuestionExists()) {
+      proceedToNextQuestion();
+    } else {
+      updateWin(false);
+    }
+  };
+
   return (
     <section className="p-4">
       {winConditionSatisfied === null && (
@@ -145,6 +153,12 @@ export default function Game({ gameData, timeLimit }: GameProps) {
                 className="w-full py-3 px-6 bg-green-500 hover:bg-green-600 text-purple-900 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
               >
                 Submit Answer
+              </button>
+              <button
+                onClick={handleSkipQuestion}
+                className="w-full mt-2 py-3 px-6 bg-red-500 hover:bg-red-600 text-purple-900 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              >
+                Skip Question
               </button>
             </div>
           </div>
