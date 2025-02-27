@@ -53,7 +53,7 @@ export default function EditQAForm({gameData, setGameData, setLoadGame}:EditQAFo
       <div className="mt-8 flex justify-center">
         <button
           onClick={() => setLoadGame(true)}
-          className="px-6 py-3 bg-btn hover:bg-green-600 text-primary font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          className="px-6 py-3 bg-btn text-primary font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
         >
           Confirm Changes
         </button>

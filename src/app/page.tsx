@@ -11,45 +11,46 @@ interface TriviaData {
 }
 
 
-// const triviaData: TriviaData[] = [
-//   {
-//     difficulty: "easy",
-//     question: "What is the capital of France?",
-//     answer: "Paris",
-//     topic: "Geography"
-//   },
-//   {
-//     difficulty: "medium",
-//     question: "Who painted the Mona Lisa?",
-//     answer: "Leonardo da Vinci",
-//     topic: "Art"
-//   },
-//   {
-//     difficulty: "hard",
-//     question: "What is the chemical symbol for the element with atomic number 76?",
-//     answer: "Os",
-//     topic: "Chemistry"
-//   },
-//   {
-//     difficulty: "easy",
-//     question: "What planet is known as the Red Planet?",
-//     answer: "Mars",
-//     topic: "Astronomy"
-//   },
-//   {
-//     difficulty: "medium",
-//     question: "In what year did the Titanic sink?",
-//     answer: "1912",
-//     topic: "History"
-//   }
-// ];
+const triviaData: TriviaData[] = [
+  {
+    difficulty: "easy",
+    question: "What is the capital of France?",
+    answer: "Paris",
+    topic: "Geography"
+  },
+  {
+    difficulty: "medium",
+    question: "Who painted the Mona Lisa?",
+    answer: "Leonardo da Vinci",
+    topic: "Art"
+  },
+  {
+    difficulty: "hard",
+    question: "What is the chemical symbol for the element with atomic number 76?",
+    answer: "Os",
+    topic: "Chemistry"
+  },
+  {
+    difficulty: "easy",
+    question: "What planet is known as the Red Planet?",
+    answer: "Mars",
+    topic: "Astronomy"
+  },
+  {
+    difficulty: "medium",
+    question: "In what year did the Titanic sink?",
+    answer: "1912",
+    topic: "History"
+  }
+];
+
 export default function WickedTrivia() {
   const [timeSliderVal, setTimeSliderVal] = useState<string>("60");
   const [difficulty, setDifficulty] = useState<string>("medium");
   const [topic, setTopic] = useState<string>("")
   const [questionAmount, setQuestionAmount] = useState<string>("")
   const [loadGame, setLoadGame] = useState<boolean>(false)
-  const [gameData, setGameData] = useState<TriviaData[]>([])
+  const [gameData, setGameData] = useState<TriviaData[]>(triviaData)
   const [loading, setLoading] = useState<boolean>(false)
 
   const gameStart = loadGame && gameData.length > 0
@@ -188,7 +189,7 @@ export default function WickedTrivia() {
                   className="w-full px-3 py-2 bg-light rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 />
               </div>
-              <button disabled={loading} className="w-full px-6 py-3 bg-btn hover:bg-green-600 font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+              <button disabled={loading} className="w-full px-6 py-3 bg-btn font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
                 {loading ? "Loading game..." : "Start Game"}
               </button>
             </form>

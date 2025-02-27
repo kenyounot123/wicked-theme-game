@@ -61,6 +61,7 @@ table {
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #c9db74;
+		--background-dark: #999999;
 		--text: #A8E9E9;
 		--primary: #A8e9e9;
 		--accent: #FFEDAD;

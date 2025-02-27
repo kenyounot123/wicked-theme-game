@@ -140,7 +140,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
                 type="text"
                 value={userAnswer}
                 placeholder="Enter your answer"
-                className="w-full px-4 py-3 bg-purple-600 text-primary placeholder-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 ease-in-out"
+                className="w-full px-4 py-3 bg-light text-primary placeholder-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-btn transition duration-300 ease-in-out"
                 onChange={(e) => setUserAnswer(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -150,7 +150,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
               />
               <button
                 onClick={handleSubmitAnswer}
-                className="w-full py-3 px-6 bg-btn hover:bg-green-600 text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                className="w-full py-3 px-6 bg-btn hover:bg-btn text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-btn focus:ring-opacity-50"
               >
                 Submit Answer
               </button>

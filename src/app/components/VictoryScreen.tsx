@@ -13,7 +13,7 @@ export default function VictoryScreen({ score, totalQuestions }: { score: number
       <div className="space-y-4">
         <button
           onClick={() => window.location.reload()}
-          className="w-full py-3 px-4 bg-btn hover:bg-green-600 text-primary font-semibold rounded-lg transition-colors duration-200 text-lg"
+          className="w-full py-3 px-4 bg-btn text-primary font-semibold rounded-lg transition-colors duration-200 text-lg"
         >
           Play Again
         </button>
