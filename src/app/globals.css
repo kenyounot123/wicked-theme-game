@@ -60,13 +60,19 @@ table {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #e2fb67;
+		--background-dark: #999999;
+		--text: black;
+		--primary: black;
+		--accent: #ffe27c;
+		--accent-light: #FFF2C5;
+		--btn: #a8e9e9;
+		--secondary-accent: #e1b2f8;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }

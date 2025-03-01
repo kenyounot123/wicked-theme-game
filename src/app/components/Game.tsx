@@ -115,20 +115,20 @@ export default function Game({ gameData, timeLimit }: GameProps) {
           <div className="text-center">
             <button
               onClick={handlePauseToggle}
-              className="inline-flex items-center justify-center px-6 py-3 bg-red-500 hover:bg-red-600 text-purple-900 font-bold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              className="inline-flex items-center justify-center px-6 py-3 bg-secondary hover:bg-secondary text-primary font-bold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
             >
               <span className="mr-2">{paused ? "Play" : "Pause"}</span>
               <span className="text-2xl">{paused ? "▶" : "❚❚"}</span>
             </button>
           </div>
 
-          <div className="bg-purple-800 rounded-xl shadow-lg overflow-hidden">
-            <div className="flex justify-between items-center bg-purple-700 px-6 py-4">
+          <div className="bg-accent rounded-xl shadow-lg overflow-hidden">
+            <div className="flex justify-between items-center bg-accent/20 px-6 py-4">
               <div className="text-xl font-semibold">
-                Score: <span className="text-3xl font-bold text-green-400">{score}</span>
+                Score: <span className="text-3xl font-bold text-primary">{score}</span>
               </div>
               <div className="text-xl font-semibold flex items-center">
-                Time Left: <span className="ml-2 text-3xl font-bold text-red-400">{timeLeft}</span>
+                Time Left: <span className="ml-2 text-3xl font-bold text-primary">{timeLeft}</span>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
                 type="text"
                 value={userAnswer}
                 placeholder="Enter your answer"
-                className="w-full px-4 py-3 bg-purple-600 text-purple-100 placeholder-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 ease-in-out"
+                className="w-full px-4 py-3 bg-light text-primary placeholder-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-btn transition duration-300 ease-in-out"
                 onChange={(e) => setUserAnswer(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -150,13 +150,13 @@ export default function Game({ gameData, timeLimit }: GameProps) {
               />
               <button
                 onClick={handleSubmitAnswer}
-                className="w-full py-3 px-6 bg-green-500 hover:bg-green-600 text-purple-900 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                className="w-full py-3 px-6 bg-btn hover:bg-btn text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-btn focus:ring-opacity-50"
               >
                 Submit Answer
               </button>
               <button
                 onClick={handleSkipQuestion}
-                className="w-full mt-2 py-3 px-6 bg-red-500 hover:bg-red-600 text-purple-900 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                className="w-full mt-2 py-3 px-6 bg-secondary hover:bg-secondary text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
               >
                 Skip Question
               </button>
