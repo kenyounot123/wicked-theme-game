@@ -21,7 +21,7 @@ export default function EditQAForm({gameData, setGameData, setLoadGame}:EditQAFo
     <div className="max-w-2xl mx-auto p-6 bg-accent rounded-xl shadow-2xl mt-8">
       <h1 className="text-3xl font-extrabold text-primary mb-6 text-center">Confirm Answers and Questions</h1>
       {gameData.map((trivia, index) => (
-        <form key={index} className="bg-accent p-6 rounded-lg shadow-inner mb-6 last:mb-0">
+        <form key={index} className="bg-light p-6 rounded-lg shadow-inner mb-6 last:mb-0">
           <div className="space-y-4">
             <div>
               <label htmlFor={`edit-question-${index}`} className="block text-lg font-semibold text-primary mb-2">
@@ -32,11 +32,11 @@ export default function EditQAForm({gameData, setGameData, setLoadGame}:EditQAFo
                 type="text"
                 value={trivia.question}
                 onChange={(e) => handleInputChange(index, 'question', e.target.value)}
-                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-200"
+                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-btn transition duration-200"
               />
             </div>
             <div>
-              <label htmlFor={`edit-answer-${index}`} className="block text-lg font-semibold text-btn mb-2">
+              <label htmlFor={`edit-answer-${index}`} className="block text-lg font-semibold mb-2 text-primary">
                 Answer:
               </label>
               <input
@@ -44,7 +44,7 @@ export default function EditQAForm({gameData, setGameData, setLoadGame}:EditQAFo
                 type="text"
                 value={trivia.answer}
                 onChange={(e) => handleInputChange(index, 'answer', e.target.value)}
-                className="w-full px-4 py-2 bg-accent/20 text-btn rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200"
+                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200"
               />
             </div>
           </div>

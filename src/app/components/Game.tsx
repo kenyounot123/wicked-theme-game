@@ -115,7 +115,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
           <div className="text-center">
             <button
               onClick={handlePauseToggle}
-              className="inline-flex items-center justify-center px-6 py-3 bg-red-500 hover:bg-red-600 text-primary font-bold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              className="inline-flex items-center justify-center px-6 py-3 bg-secondary hover:bg-secondary text-primary font-bold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
             >
               <span className="mr-2">{paused ? "Play" : "Pause"}</span>
               <span className="text-2xl">{paused ? "▶" : "❚❚"}</span>
@@ -128,7 +128,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
                 Score: <span className="text-3xl font-bold text-primary">{score}</span>
               </div>
               <div className="text-xl font-semibold flex items-center">
-                Time Left: <span className="ml-2 text-3xl font-bold text-red-400">{timeLeft}</span>
+                Time Left: <span className="ml-2 text-3xl font-bold text-primary">{timeLeft}</span>
               </div>
             </div>
 
@@ -156,7 +156,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
               </button>
               <button
                 onClick={handleSkipQuestion}
-                className="w-full mt-2 py-3 px-6 bg-red-500 hover:bg-red-600 text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                className="w-full mt-2 py-3 px-6 bg-secondary hover:bg-secondary text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
               >
                 Skip Question
               </button>
