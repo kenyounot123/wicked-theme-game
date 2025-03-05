@@ -11,38 +11,38 @@ interface TriviaData {
 }
 
 
-const triviaData: TriviaData[] = [
-  {
-    difficulty: "easy",
-    question: "What is the capital of France?",
-    answer: "Paris",
-    topic: "Geography"
-  },
-  {
-    difficulty: "medium",
-    question: "Who painted the Mona Lisa?",
-    answer: "Leonardo da Vinci",
-    topic: "Art"
-  },
-  {
-    difficulty: "hard",
-    question: "What is the chemical symbol for the element with atomic number 76?",
-    answer: "Os",
-    topic: "Chemistry"
-  },
-  {
-    difficulty: "easy",
-    question: "What planet is known as the Red Planet?",
-    answer: "Mars",
-    topic: "Astronomy"
-  },
-  {
-    difficulty: "medium",
-    question: "In what year did the Titanic sink?",
-    answer: "1912",
-    topic: "History"
-  }
-];
+// const triviaData: TriviaData[] = [
+//   {
+//     difficulty: "easy",
+//     question: "What is the capital of France?",
+//     answer: "Paris",
+//     topic: "Geography"
+//   },
+//   {
+//     difficulty: "medium",
+//     question: "Who painted the Mona Lisa?",
+//     answer: "Leonardo da Vinci",
+//     topic: "Art"
+//   },
+//   {
+//     difficulty: "hard",
+//     question: "What is the chemical symbol for the element with atomic number 76?",
+//     answer: "Os",
+//     topic: "Chemistry"
+//   },
+//   {
+//     difficulty: "easy",
+//     question: "What planet is known as the Red Planet?",
+//     answer: "Mars",
+//     topic: "Astronomy"
+//   },
+//   {
+//     difficulty: "medium",
+//     question: "In what year did the Titanic sink?",
+//     answer: "1912",
+//     topic: "History"
+//   }
+// ];
 
 export default function WickedTrivia() {
   const [timeSliderVal, setTimeSliderVal] = useState<string>("60");
