@@ -60,14 +60,15 @@ table {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #e2fb67;
+    --background: #c3c3fa;
 		--background-dark: #999999;
 		--text: black;
 		--primary: black;
-		--accent: #ffe27c;
-		--accent-light: #FFF2C5;
-		--btn: #a8e9e9;
-		--secondary-accent: #e1b2f8;
+		--accent: #FFF9C4;
+		--accent-light: #f4edd7;
+		--btn: #B2F2BB;
+		--secondary-accent: #A2D5F2;
+		--title: #4db3ef;
   }
 }
 

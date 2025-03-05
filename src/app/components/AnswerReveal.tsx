@@ -10,7 +10,7 @@ interface TriviaData {
 export default function AnswerReveal({gameData}:AnswerRevealProps) {
   return (
     <div className="space-y-6 p-4 bg-accent rounded-lg shadow-lg mt-5">
-      <h1 className="text-2xl font-bold text-primary mb-4">Answer Reveal</h1>
+      <h1 className="text-2xl font-bold text-primary mb-4 text-center">Answer Reveal</h1>
       {gameData.map((trivia, index) => (
         <div key={index} className="bg-accent p-4 rounded-lg">
           <div className="bg-light p-5 rounded-lg">

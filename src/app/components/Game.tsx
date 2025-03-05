@@ -115,7 +115,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
           <div className="text-center">
             <button
               onClick={handlePauseToggle}
-              className="inline-flex items-center justify-center px-6 py-3 bg-secondary hover:bg-secondary text-primary font-bold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
+              className="shadow-lg inline-flex items-center justify-center px-6 py-3 bg-secondary hover:bg-secondary text-primary font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
             >
               <span className="mr-2">{paused ? "Play" : "Pause"}</span>
               <span className="text-2xl">{paused ? "▶" : "❚❚"}</span>

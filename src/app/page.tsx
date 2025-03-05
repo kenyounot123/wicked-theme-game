@@ -11,38 +11,38 @@ interface TriviaData {
 }
 
 
-// const triviaData: TriviaData[] = [
-//   {
-//     difficulty: "easy",
-//     question: "What is the capital of France?",
-//     answer: "Paris",
-//     topic: "Geography"
-//   },
-//   {
-//     difficulty: "medium",
-//     question: "Who painted the Mona Lisa?",
-//     answer: "Leonardo da Vinci",
-//     topic: "Art"
-//   },
-//   {
-//     difficulty: "hard",
-//     question: "What is the chemical symbol for the element with atomic number 76?",
-//     answer: "Os",
-//     topic: "Chemistry"
-//   },
-//   {
-//     difficulty: "easy",
-//     question: "What planet is known as the Red Planet?",
-//     answer: "Mars",
-//     topic: "Astronomy"
-//   },
-//   {
-//     difficulty: "medium",
-//     question: "In what year did the Titanic sink?",
-//     answer: "1912",
-//     topic: "History"
-//   }
-// ];
+const triviaData: TriviaData[] = [
+  {
+    difficulty: "easy",
+    question: "What is the capital of France?",
+    answer: "Paris",
+    topic: "Geography"
+  },
+  {
+    difficulty: "medium",
+    question: "Who painted the Mona Lisa?",
+    answer: "Leonardo da Vinci",
+    topic: "Art"
+  },
+  {
+    difficulty: "hard",
+    question: "What is the chemical symbol for the element with atomic number 76?",
+    answer: "Os",
+    topic: "Chemistry"
+  },
+  {
+    difficulty: "easy",
+    question: "What planet is known as the Red Planet?",
+    answer: "Mars",
+    topic: "Astronomy"
+  },
+  {
+    difficulty: "medium",
+    question: "In what year did the Titanic sink?",
+    answer: "1912",
+    topic: "History"
+  }
+];
 
 export default function WickedTrivia() {
   const [timeSliderVal, setTimeSliderVal] = useState<string>("60");
@@ -102,7 +102,7 @@ export default function WickedTrivia() {
       <div className="min-w-96 min-h-screen flex items-center justify-center bg-background p-4">
         {gameData.length === 0 && (
           <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-accent">
-            <h1 className="text-4xl font-bold mb-6 text-center flex items-center justify-center text-[#1dd5d5]">
+            <h1 className="text-4xl font-bold mb-6 text-center flex items-center justify-center text-title">
               {/* <SkullIcon className="w-8 h-8 mr-2" /> */}
               Wicked Trivia
             </h1>
