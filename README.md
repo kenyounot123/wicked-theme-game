@@ -1,3 +1,7 @@
+# Getting Started
+- run `npm run dev` locally and then you should see it on `http://localhost:3000`
+- you might need an openai api key to test core functionality as well.
+
 # SLP Telepractice Application
 
 ## Overview
