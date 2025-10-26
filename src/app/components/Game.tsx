@@ -23,13 +23,14 @@ export default function Game({ gameData, timeLimit }: GameProps) {
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [paused, setPaused] = useState(false);
+  const [showCorrectFeedback, setShowCorrectFeedback] = useState(false);
 
   useEffect(() => {
     setTimeLeft(timeLimit); // Reset to initial timer value when question changes
   }, [questionNumber]);
 
   useEffect(() => {
-    if (winConditionSatisfied || paused) {
+    if (winConditionSatisfied || paused || showCorrectFeedback) {
       return;
     }
     if (timeLeft <= 0) {
@@ -46,7 +47,7 @@ export default function Game({ gameData, timeLimit }: GameProps) {
     }, 1000);
 
     return () => clearInterval(timerId);
-  }, [timeLeft, winConditionSatisfied, paused]);
+  }, [timeLeft, winConditionSatisfied, paused, showCorrectFeedback]);
 
   const handleSubmitAnswer = () => {
     if (!userAnswer) return;
@@ -58,11 +59,16 @@ export default function Game({ gameData, timeLimit }: GameProps) {
     );
     if (correct) {
       updateScore();
-      if (nextQuestionExists()) {
-        proceedToNextQuestion();
-      } else {
-        updateWin(true); // When a win has occured we need someway to stop the timer , exit out of the useEffect
-      }
+      setShowCorrectFeedback(true);
+
+      setTimeout(() => {
+        setShowCorrectFeedback(false);
+        if (nextQuestionExists()) {
+          proceedToNextQuestion();
+        } else {
+          updateWin(true); // When a win has occured we need someway to stop the timer , exit out of the useEffect
+        }
+      }, 1500);
     } else {
       alert("Incorrect answer. Try again!");
     }
@@ -112,6 +118,12 @@ export default function Game({ gameData, timeLimit }: GameProps) {
     <section className="p-4">
       {winConditionSatisfied === null && (
         <div className="space-y-8">
+          {showCorrectFeedback && (
+            <div className="bg-green-500 text-white px-6 py-4 text-center font-bold text-xl rounded-lg animate-pulse shadow-lg">
+              ✓ Correct! Well done!
+            </div>
+          )}
+
           <div className="text-center">
             <button
               onClick={handlePauseToggle}
