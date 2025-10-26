@@ -27,24 +27,22 @@ export default function EditQAForm({gameData, setGameData, setLoadGame}:EditQAFo
               <label htmlFor={`edit-question-${index}`} className="block text-lg font-semibold text-primary mb-2">
                 Question:
               </label>
-              <input
+              <textarea
                 id={`edit-question-${index}`}
-                type="text"
                 value={trivia.question}
                 onChange={(e) => handleInputChange(index, 'question', e.target.value)}
-                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-btn transition duration-200"
+                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-btn transition duration-200 resize-y"
               />
             </div>
             <div>
               <label htmlFor={`edit-answer-${index}`} className="block text-lg font-semibold mb-2 text-primary">
                 Answer:
               </label>
-              <input
+              <textarea
                 id={`edit-answer-${index}`}
-                type="text"
                 value={trivia.answer}
                 onChange={(e) => handleInputChange(index, 'answer', e.target.value)}
-                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200"
+                className="w-full px-4 py-2 bg-accent/20 text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 resize-y"
               />
             </div>
           </div>
