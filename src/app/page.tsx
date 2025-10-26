@@ -10,7 +10,8 @@ interface TriviaData {
   topic: string
 }
 
-
+// Uncomment this and set it in the game data state variable
+// to test in dev environment without needing openai to constantly generate questions.
 // const triviaData: TriviaData[] = [
 //   {
 //     difficulty: "easy",
@@ -52,6 +53,7 @@ export default function WickedTrivia() {
   const [loadGame, setLoadGame] = useState<boolean>(false)
   const [gameData, setGameData] = useState<TriviaData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const [modal, setModal] = useState<boolean>(false)
 
   const gameStart = loadGame && gameData.length > 0
 
@@ -102,10 +104,19 @@ export default function WickedTrivia() {
       <div className="min-w-96 min-h-screen flex items-center justify-center bg-background p-4">
         {gameData.length === 0 && (
           <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-accent">
-            <h1 className="text-4xl font-bold mb-6 text-center flex items-center justify-center text-title">
-              {/* <SkullIcon className="w-8 h-8 mr-2" /> */}
-              Wicked Trivia
-            </h1>
+            <div className="relative">
+              <h1 className="text-4xl font-bold mb-6 text-center flex items-center justify-center text-title">
+                {/* <SkullIcon className="w-8 h-8 mr-2" /> */}
+                Wicked Trivia
+              </h1>
+
+              <button
+                onClick={() => setModal(!modal)}
+                className="absolute top-0 right-0 px-4 py-2 bg-btn text-primary font-semibold rounded-lg shadow-md hover:bg-btn/80 transition duration-200"
+              >
+                Help
+              </button>
+            </div>
 
             {/* Game setup section */}
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -198,6 +209,48 @@ export default function WickedTrivia() {
         {gameData.length > 0 && loadGame === false && <EditQAForm gameData={gameData} setGameData={setGameData} setLoadGame={setLoadGame}/>}
         {gameStart && <Game gameData={gameData} timeLimit={parseInt(timeSliderVal)}/>}
       </div>
+
+      {/* Modal */}
+      {modal && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={() => setModal(false)}
+        >
+          <div
+            className="bg-accent rounded-xl shadow-2xl p-6 max-w-lg w-full transform transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <h2 className="text-2xl font-bold text-primary">Information and Rules</h2>
+              <button
+                onClick={() => setModal(false)}
+                className="text-primary hover:text-btn transition duration-200 text-2xl font-bold"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="space-y-4">
+              <p className="text-primary">
+                Welcome to Wicked Trivia! Test your knowledge with AI-generated trivia questions on any topic you choose.
+              </p>
+              <div className="text-primary space-y-2">
+                <h3 className="font-semibold text-lg">How to Play:</h3>
+                <ul className="list-disc list-inside space-y-1 ml-2">
+                  <li>Set your timer duration (10-120 seconds per question)</li>
+                  <li>Choose your difficulty level (Easy, Medium, or Hard)</li>
+                  <li>Input a topic of your choice</li>
+                  <li>Select the number of questions (1-10)</li>
+                  <li>Review and edit the generated questions if needed</li>
+                  <li>Answer each question before time runs out!</li>
+                </ul>
+              </div>
+              <p className="text-primary text-sm">
+                The game uses AI to generate unique trivia questions based on your chosen topic and difficulty level.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
